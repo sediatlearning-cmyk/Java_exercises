@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SecretNumber {
@@ -20,8 +18,10 @@ public class SecretNumber {
 		do {
 			if (answer.equalsIgnoreCase("oui")|| answer.equalsIgnoreCase("o")) {
 				do {
+					do {
 					System.out.println("Faite un proposition : ");
 					proposedNumber = scan.nextInt();
+					} while (proposedNumber< 0 || proposedNumber>100);
 					count += 1;
 					if (proposedNumber > secretNumber) {
 						System.out.println("Votre nombre est trop grand.");
@@ -32,8 +32,7 @@ public class SecretNumber {
 					for(int i = 0 ; i < numberProposedTable.length; i++) {
 						numberProposedTable[i] = proposedNumber;
 					}
-				} while(proposedNumber != secretNumber);
-					
+				} while(proposedNumber != secretNumber);	
 				System.out.println("Vous avez trouvé le nombre secret en " + count + " coups. Nombre secret : " + secretNumber);
 			}
 			else {
@@ -44,6 +43,7 @@ public class SecretNumber {
 				 response = scan.next();
 			} while(!response.equalsIgnoreCase("non")&& !response.equalsIgnoreCase("oui")&& !response.equalsIgnoreCase("o") && !response.equalsIgnoreCase("n"));
 			secretNumber =  min + (int)(Math.random() * ((max - min) + 1));
+			count = 0;
 		} while (response.equalsIgnoreCase("oui")|| response.equalsIgnoreCase("o"));
 		scan.close();
 	}
